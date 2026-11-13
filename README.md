@@ -44,3 +44,10 @@ Check official pricing and policies before labeling a tool 100% free. Treat free
 - Offline PWA caching begins after the first HTTPS visit; external tool websites still require an internet connection.
 - Updates to `tools.json` are normal Git commits; for large catalogs consider generating the JSON file from a checked/maintained CSV or database.
 - Responsible use: public information does not imply permission to invade privacy, evade access controls, or harass others.
+
+
+## Large catalog and ranking (November 2026)
+
+This version contains 880 entries from uploaded CSVs, excluding entries flagged outdated, duplicates, missing status, and paid-only listings: 659 listed free and 221 listed freemium. Pricing and uptime are based on source records, not live verification of every site.
+
+Search ranks by exact name match, word relevance in names/categories/tags/descriptions, then an editorial heuristic. Category views rank by curated picks, availability of documentation, registration requirements, and public-source links. These signals are not uptime or security guarantees. Quick category buttons and pagination (36 items at a time) make the site usable on phones.
