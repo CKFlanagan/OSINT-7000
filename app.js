@@ -163,6 +163,57 @@ async function init(){
     "wireshark":28,"have i been pwned":30,"tineye":28,"dnsdumpster":28
   }));
   let currentMatches = [], currentShown = 0;
+  // OSINT 7000 advanced discovery filters
+  const advanced={source:"all",readiness:"all",scope:"all",registration:"all",sort:"recommended"};
+  function resourceType(t){
+    const url=safeURL(t.url)||"";
+    const typ=normalized(t.type||"");
+    if(/extension|browser add-on|browser addon/.test(typ))return "extension";
+    if(/\bapi\b|application programming interface/.test(typ))return "api";
+    if(/dataset|database|directory|data collection/.test(typ))return "dataset";
+    if(/^https:\/\/github\.com\/[^/]+\/[^/]+/i.test(url))return "github";
+    return "website";
+  }
+  function setupStatus(t){
+    // Source-imported projects have no verified installation information.
+    if(t.reviewStatus==="needs-review")return "unknown";
+    const type=resourceType(t);
+    const steps=(Array.isArray(t.how)?t.how:[]).join(" ");
+    const instructions=normalized([steps,t.where,t.type].join(" "));
+    if(/\b(install|installation|pip install|npm install|docker|clone repository|git clone|compile|build from source|terminal|command.line)\b/.test(instructions))return "setup";
+    if((type==="website"||type==="api") && /\b(browser|online|web interface|web app|paste|enter|upload|submit|search form)\b/.test(instructions) && (t.input||t.output||/\b(enter|paste|upload|search)\b/.test(steps)))return "ready";
+    return "unknown";
+  }
+  function advancedMatch(t){
+    if(advanced.source!=="all" && resourceType(t)!==advanced.source)return false;
+    if(advanced.readiness!=="all" && setupStatus(t)!==advanced.readiness)return false;
+    if(advanced.registration==="no" && t.requiresRegistration!==false)return false;
+    if(advanced.registration==="yes" && t.requiresRegistration!==true)return false;
+    if(query && advanced.scope!=="all"){
+      const hay=advanced.scope==="name" ? t.name : [t.summary,t.description,t.category,t.categoryPath,...(t.tags||[])].join(" ");
+      const words=normalized(query).split(/\s+/).filter(Boolean);
+      if(!words.every(w=>normalized(hay).includes(w)))return false;
+    }
+    return true;
+  }
+  function setupAdvanced(){
+    const fields={source:"sourceFilter",readiness:"readinessFilter",scope:"scopeFilter",registration:"registrationFilter",sort:"sortFilter"};
+    for(const [key,id] of Object.entries(fields)){
+      const el=$(id);if(!el)continue;
+      el.addEventListener("change",()=>{advanced[key]=el.value;render();});
+    }
+    $("resetAdvanced")?.addEventListener("click",()=>{
+      for(const [key,id] of Object.entries(fields)){advanced[key]=key==="sort"?"recommended":"all";$(id).value=advanced[key];}
+      render();
+    });
+    const toggle=$("filterToggle"),panel=$("advancedFilters");
+    toggle?.addEventListener("click",()=>{
+      const open=panel.classList.toggle("sidebar-open");
+      toggle.setAttribute("aria-expanded",String(open));
+    });
+  }
+  setupAdvanced();
+
   const safeURL = raw => {
     try { const u = new URL(raw); return ["http:","https:"].includes(u.protocol) ? u.href : null; }
     catch { return null; }
@@ -247,14 +298,17 @@ async function init(){
     currentMatches=tools.filter(t=>(t.pricing===mode || (includeUnverified && t.pricing==="unknown")) &&
       (category==="all"||t.categories.includes(category)) &&
       (!favoritesOnly||favorites.has(t.id)) &&
-      (!words.length||ranks.has(t.id)));
-    currentMatches.sort((a,b)=>words.length
-      ? ranks.get(a.id).index-ranks.get(b.id).index
-      : b._quality-a._quality||a.name.localeCompare(b.name));
-    for(const t of currentMatches)t._matchReason=words.length?ranks.get(t.id)?.reason:"";
+      advancedMatch(t) &&
+      (!words.length||advanced.scope!=="all"||ranks.has(t.id)));
+    currentMatches.sort((a,b)=>advanced.sort==="name"?a.name.localeCompare(b.name)
+      :advanced.sort==="quality"?b._quality-a._quality||a.name.localeCompare(b.name)
+      :words.length&&advanced.scope==="all"
+        ? ranks.get(a.id).index-ranks.get(b.id).index
+        :b._quality-a._quality||a.name.localeCompare(b.name));
+    for(const t of currentMatches)t._matchReason=words.length&&advanced.scope==="all"?ranks.get(t.id)?.reason:"";
     currentShown=0;$("tools").replaceChildren();loadNext();
     $("empty").hidden=currentMatches.length>0;
-    $("count").textContent=`${currentMatches.length.toLocaleString()} matches · ${words.length?"smart relevance":"recommended first"}`;
+    $("count").textContent=`${currentMatches.length.toLocaleString()} matches · ${words.length?(advanced.scope==="all"?"smart relevance":"precise match"):"filtered catalog"}`;
     $("modeToggle").classList.toggle("on",mode==="freemium");
     $("modeToggle").setAttribute("aria-checked",String(mode==="freemium"));
     $("modeToggle").setAttribute("aria-label",mode==="free"?"Show freemium tools":"Show free tools");
