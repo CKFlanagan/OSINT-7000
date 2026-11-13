@@ -175,6 +175,7 @@ async function init(){
     return "website";
   }
   function setupStatus(t){
+    if(t.readyToUseVerified===true)return "ready";
     // Source-imported projects have no verified installation information.
     if(t.reviewStatus==="needs-review")return "unknown";
     const type=resourceType(t);
@@ -344,6 +345,13 @@ async function init(){
       if(label==="Documentation"&&url===safeURL(t.url))continue;
       const a=document.createElement("a");a.className="actionlink";a.href=url;
       a.target="_blank";a.rel="noopener noreferrer";a.textContent=label+" ↗";links.append(a);
+    }
+    if(t.pricingVerificationSource){
+      const verified=document.createElement("p");verified.className="meta";
+      verified.textContent="Pricing verified from provider information on "+(t.pricingVerifiedAt||"an unrecorded date")+".";
+      $("guideActions").append(verified);
+      const evidence=document.createElement("a");evidence.className="actionlink";evidence.href=safeURL(t.pricingVerificationSource);
+      evidence.target="_blank";evidence.rel="noopener noreferrer";evidence.textContent="Pricing evidence ↗";$("guideActions").append(evidence);
     }
     if(t.sourceRepository){
       const area=$("guideActions");
