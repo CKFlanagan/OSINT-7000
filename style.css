@@ -12,3 +12,20 @@
 
 /* Explicitly separate unverified imported resources from confirmed pricing modes. */
 .review-optin{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:15px 0 0;color:#e6edf5;font-weight:650;cursor:pointer;font-size:14px}.review-optin input{accent-color:#6ee7a0;width:19px;height:19px}.review-optin strong{font-size:12px;color:#ffcf7b;background:#423622;border-radius:10px;padding:4px 8px}.review-caption{margin:7px 0 16px;color:#a9b6c8;font-size:12px;line-height:1.5}.catalog-total{margin:9px 0 0;color:#98e9bd;font-size:13px}.pill.unknown{background:#423622;color:#ffdb9b}.related-note{display:block;font-size:11px;color:#d4dbe7;margin-bottom:9px}
+
+/* OSINT 7000 advanced filters */
+.directory-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:22px;align-items:start}
+.filter-sidebar{background:#101f31;border:1px solid #30495e;border-radius:16px;padding:18px;position:sticky;top:15px}
+.sidebar-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sidebar-heading h2{font-size:18px;margin:0}
+.sidebar-heading button{border:0;background:transparent;color:#8ceeb3;text-decoration:underline;font-size:12px;padding:4px}
+.sidebar-caption,.sidebar-footnote{font-size:12px;color:#a9b9ce;line-height:1.55}
+.sidebar-footnote{border-top:1px solid #30495e;padding-top:12px;margin-top:17px}
+.filter-sidebar label{display:block;font-size:12px;font-weight:750;color:#dceafa;margin:17px 0 7px}
+.filter-sidebar select{display:block;width:100%;max-width:none;font-size:13px;white-space:normal}
+.directory-results{min-width:0}
+.directory-results .toolgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mobile-filter-toggle{display:none}
+@media(min-width:1100px){.directory-results .toolgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:850px){.directory-layout{display:block}.filter-sidebar{position:static;display:none;margin:12px 0 18px}.filter-sidebar.sidebar-open{display:block}.mobile-filter-toggle{display:block;background:#182c3c;color:#d5fce3;border:1px solid #456e5d;border-radius:11px;padding:12px 15px;margin-bottom:18px;width:100%;text-align:left;font-weight:750}}
+@media(max-width:550px){.directory-results .toolgrid{grid-template-columns:1fr}}
