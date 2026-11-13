@@ -44,6 +44,114 @@ async function init(){
 }
 
 (function siteUpgrade() {
+  const semanticSearch = (function searchFactory(){
+  const stop=new Set("a an the and or but for with without in on at to of by is are was were be been it its this that those these i me my you your we they us from how what where which who when can do does have has want need please find finding look looking search searching tool tools using use get show tell give across multiple different many any some available best right good related about information info public online".split(" "));
+  const norm=s=>String(s??"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+  const stem=s=>s.length>5&&s.endsWith("ies")?s.slice(0,-3)+"y":s.length>4&&s.endsWith("s")&&!s.endsWith("ss")?s.slice(0,-1):s;
+  const words=s=>norm(s).split(/\s+/).filter(Boolean).map(stem).filter(w=>w.length>1&&!stop.has(w));
+  const synonyms=[
+    "archive history historical snapshot wayback cached previous old",
+    "username handle alias account profile",
+    "image picture photo photograph",
+    "metadata exif geotag embedded",
+    "map geolocation gps coordinate location",
+    "domain dns subdomain hostname",
+    "certificate ssl tls crt",
+    "breach leak compromised exposed",
+    "malware virus threat hash",
+    "company business corporate corporation",
+    "satellite imagery earth aerial",
+    "document pdf file"
+  ].map(x=>[...new Set(words(x))]);
+  const intents=[
+    {name:"website archives",test:[/\b(old|past|previous|earlier|historical|archived|deleted)\b.*\b(websites?|webpages?|pages?|sites?|urls?)\b/,/\b(websites?|webpages?|sites?|urls?)\b.*\b(old|history|archive|previous|snapshot|20\d\d|19\d\d)\b/,/\b(wayback|web history|archived page)\b/],terms:"wayback archive snapshot historical webpage",picks:["wayback machine"]},
+    {name:"username research",test:[/\b(usernames?|handles?|aliases|nicknames?)\b/,/\b(social|online)\b.*\b(profiles?|accounts?)\b/],terms:"username profile sherlock account handle",picks:["sherlock"]},
+    {name:"image metadata",test:[/\b(photo|image|picture|file)\b.*\b(metadata|exif|geotag|gps|taken|camera)\b/,/\b(metadata|exif|geotag)\b.*\b(image|photo|picture|file)\b/],terms:"exif metadata geotag photo",picks:["exiftool"]},
+    {name:"reverse image search",test:[/\b(reverse|origin|source|similar)\b.*\b(photo|picture|image)\b/,/\b(photo|picture|image)\b.*\b(reverse|origin|source)\b/],terms:"reverse image tineye similar",picks:["tineye"]},
+    {name:"domain research",test:[/\b(domain|domains|website)\b.*\b(dns|subdomains?|records?|ownership|whois)\b/,/\b(dns|subdomains?|whois)\b/],terms:"domain dns subdomain whois",picks:["crt.sh","theharvester"]},
+    {name:"certificate transparency",test:[/\b(ssl|tls|certificates?|https)\b.*\b(domain|search|transparency)\b/,/\b(certificate transparency|crt sh)\b/],terms:"certificate crt transparency domain",picks:["crt.sh"]},
+    {name:"geographic imagery",test:[/\b(satellite|aerial)\b.*\b(photos?|pictures?|images?|maps?|imagery)\b/,/\b(map|earth)\b.*\b(satellite|aerial)\b/],terms:"satellite imagery earth map",picks:["google earth","openstreetmap"]},
+    {name:"breach awareness",test:[/\b(email|password|account)\b.*\b(breach|leak|exposed|compromised)\b/,/\b(breach|leak)\b.*\b(email|account|password)\b/],terms:"breach leak exposed email",picks:["have i been pwned"]},
+    {name:"public business records",test:[/\b(company|business|corporation)\b.*\b(owner|ownership|registry|register|directors?|records?)\b/,/\b(who owns)\b.*\b(company|business)\b/],terms:"company business registry corporate",picks:["opencorporates"]},
+    {name:"malware analysis",test:[/\b(file|url|hash|attachment)\b.*\b(malware|virus|suspicious|threat|safe)\b/,/\b(malware|virus|threat)\b.*\b(file|hash|scan)\b/],terms:"malware hash virustotal threat",picks:["virustotal"]}
+  ];
+  let docs=[],idf=new Map(),vocab=new Set(),corrections=new Map();
+  function distance(a,b,max){
+    if(Math.abs(a.length-b.length)>max)return max+1;
+    let row=Array.from({length:b.length+1},(_,j)=>j);
+    for(let i=1;i<=a.length;i++){
+      const next=[i];let low=i;
+      for(let j=1;j<=b.length;j++){next[j]=Math.min(next[j-1]+1,row[j]+1,row[j-1]+(a[i-1]===b[j-1]?0:1));low=Math.min(low,next[j]);}
+      if(low>max)return max+1;row=next;
+    }
+    return row[b.length];
+  }
+  function typo(w){
+    if(vocab.has(w)||w.length<4)return[];
+    if(corrections.has(w))return corrections.get(w);
+    const max=w.length>=9?2:1;
+    const result=[];
+    for(const candidate of vocab)if(candidate.slice(0,2)===w.slice(0,2)&&Math.abs(candidate.length-w.length)<=max){
+      const d=distance(w,candidate,max);if(d<=max)result.push([candidate,d]);
+    }
+    result.sort((a,b)=>a[1]-b[1]||a[0].localeCompare(b[0]));
+    const corrected=result.slice(0,3).map(x=>x[0]);corrections.set(w,corrected);return corrected;
+  }
+  function build(tools){
+    const df=new Map();vocab=new Set();corrections=new Map();
+    docs=tools.map(t=>{
+      const tf=new Map();
+      function add(text,weight,primary=false){
+        for(const w of words(Array.isArray(text)?text.join(" "):text)){tf.set(w,(tf.get(w)||0)+weight);if(primary)vocab.add(w);}
+      }
+      add(t.name,8,true);add(t.category,4.5,true);add(t.categoryPath,3.5,true);
+      add(t.categories||[],3,true);add(t.tags||[],4,true);add(t.summary,2.8,true);
+      add(t.when,1.4);add(t.input,1.2);add(t.output,1.2);
+      if(norm(t.description)!==norm(t.summary))add(t.description,0.8);
+      add(t.uses||[],0.5);
+      for(const w of tf.keys())df.set(w,(df.get(w)||0)+1);
+      return {tool:t,tf,title:norm(t.name),strong:norm([t.name,t.category,t.categoryPath,(t.tags||[]).join(" "),t.summary].join(" "))};
+    });
+    idf=new Map([...df].map(([w,f])=>[w,Math.log(1+(docs.length-f+0.5)/(f+0.5))]));
+  }
+  function search(input){
+    const raw=norm(input),orig=[...new Set(words(raw))];
+    if(!orig.length)return docs.map(d=>({id:d.tool.id,score:0,reason:""}));
+    const active=intents.filter(c=>c.test.some(re=>re.test(raw)));
+    const expanded=new Map(), put=(w,value)=>{w=stem(w);if(!stop.has(w))expanded.set(w,Math.max(value,expanded.get(w)||0));};
+    for(const w of orig){
+      put(w,4);
+      for(const group of synonyms)if(group.includes(w))for(const member of group)if(member!==w)put(member,0.48);
+      for(const correction of typo(w))put(correction,2.8);
+    }
+    for(const c of active)for(const w of words(c.terms))put(w,1.7);
+    const results=[];
+    for(const d of docs){
+      let score=0,direct=0,related=0;
+      for(const [w,weight] of expanded){
+        const tf=d.tf.get(w)||0;if(!tf)continue;
+        score+=weight*(idf.get(w)||0.15)*(1.8*tf/(tf+3.2));
+        if(orig.includes(w))direct++;else related++;
+      }
+      for(const c of active){
+        const hits=words(c.terms).reduce((n,w)=>n+(d.strong.includes(w)?1:0),0);
+        if(hits>=2)score+=Math.min(24,hits*4.2);
+        if(c.picks.some(name=>d.title===name||d.title.startsWith(name+" ")))score+=32;
+      }
+      if(d.title===raw)score+=150;
+      else if(d.title.startsWith(raw))score+=78;
+      else if(raw.length>=5&&d.title.includes(raw))score+=45;
+      else if(raw.length>=7&&d.strong.includes(raw))score+=11;
+      if(direct>=2)score+=7+Math.min(6,direct*1.5);
+      if(!direct&&!related&&!active.some(c=>c.picks.some(name=>d.title.startsWith(name))))continue;
+      if(score<1.2)continue;
+      results.push({id:d.tool.id,score,reason:direct?"Keyword match":active.length?"Related: "+active[0].name:"Related terms"});
+    }
+    results.sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
+    return results;
+  }
+  return {build,search};
+})();
   const PAGE_SIZE = 36;
   const PICKS = new Map(Object.entries({
     "exiftool":36,"wayback machine":35,"openstreetmap":34,"sherlock":32,
@@ -115,7 +223,11 @@ async function init(){
     const desc=document.createElement("p");desc.textContent=t.summary||t.description||"";
     const btn=document.createElement("button");btn.type="button";btn.className="learn";btn.textContent="View full guide →";
     btn.onclick=()=>showGuide(t);
-    article.append(top,h,cat,desc,btn);return article;
+    article.append(top,h,cat,desc);
+    if(query && t._matchReason && t._matchReason!=="Keyword match") {
+      const hint=document.createElement("small");hint.className="related-note";hint.textContent=t._matchReason;article.append(hint);
+    }
+    article.append(btn);return article;
   }
   function loadNext() {
     const fragment=document.createDocumentFragment();
@@ -129,19 +241,19 @@ async function init(){
   more.onclick=loadNext;
   render = function() {
     const words=normalized(query).split(/\s+/).filter(Boolean);
-    currentMatches=tools.filter(t=>
-      t.pricing===mode &&
+    const scored=semanticSearch.search(query);
+    const ranks=new Map(scored.map((hit,index)=>[hit.id,{index,reason:hit.reason}]));
+    currentMatches=tools.filter(t=>t.pricing===mode &&
       (category==="all"||t.categories.includes(category)) &&
       (!favoritesOnly||favorites.has(t.id)) &&
-      words.every(w=>t._search.includes(w))
-    );
-    currentMatches.sort((a,b)=>
-      relevance(b,words)-relevance(a,words) ||
-      b._quality-a._quality || a.name.localeCompare(b.name)
-    );
+      (!words.length||ranks.has(t.id)));
+    currentMatches.sort((a,b)=>words.length
+      ? ranks.get(a.id).index-ranks.get(b.id).index
+      : b._quality-a._quality||a.name.localeCompare(b.name));
+    for(const t of currentMatches)t._matchReason=words.length?ranks.get(t.id)?.reason:"";
     currentShown=0;$("tools").replaceChildren();loadNext();
     $("empty").hidden=currentMatches.length>0;
-    $("count").textContent=`${currentMatches.length.toLocaleString()} matches · ${words.length?"best match first":"recommended first"}`;
+    $("count").textContent=`${currentMatches.length.toLocaleString()} matches · ${words.length?"smart relevance":"recommended first"}`;
     $("modeToggle").classList.toggle("on",mode==="freemium");
     $("modeToggle").setAttribute("aria-checked",String(mode==="freemium"));
     $("modeToggle").setAttribute("aria-label",mode==="free"?"Show freemium tools":"Show free tools");
@@ -204,6 +316,7 @@ async function init(){
           tags:t.tags||[],uses:t.uses||[],how:t.how||[],restrictions:t.restrictions||[],
           _search:arrays(t).join(" ").toLowerCase(),_quality:quality(t)
         }));
+      semanticSearch.build(tools);
       const categories=[...new Set(tools.flatMap(t=>t.categories))].sort();
       for(const c of categories) {
         const o=document.createElement("option");o.value=c;o.textContent=c;$("category").append(o);

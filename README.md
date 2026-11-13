@@ -51,3 +51,8 @@ Check official pricing and policies before labeling a tool 100% free. Treat free
 This version contains 880 entries from uploaded CSVs, excluding entries flagged outdated, duplicates, missing status, and paid-only listings: 659 listed free and 221 listed freemium. Pricing and uptime are based on source records, not live verification of every site.
 
 Search ranks by exact name match, word relevance in names/categories/tags/descriptions, then an editorial heuristic. Category views rank by curated picks, availability of documentation, registration requirements, and public-source links. These signals are not uptime or security guarantees. Quick category buttons and pagination (36 items at a time) make the site usable on phones.
+
+
+## Smart search (works on phones)
+
+Search runs entirely on-device and has no AI subscription, downloadable model, or per-query service calls. It includes field-weighted word matching, rare-term weighting, related-word expansion, topic-intent boosts, typo tolerance, exact-name matching, and editor tie-breaks. For example, “old versions of websites” prioritizes Wayback Machine and “sherlok” still finds Sherlock. This is rule-based semantic matching, not a trained LLM or Google Search. It does not override pricing/category filters. To improve relatedness, update the synonym groups and intents inside `searchFactory` in `app.js`.
