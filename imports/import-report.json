@@ -1,0 +1,32 @@
+{
+  "existingCore": 880,
+  "candidatesExamined": 2206,
+  "eligibleDistinct": 2033,
+  "imported": 1850,
+  "totalIndexed": 2730,
+  "priceGroup": {
+    "unknown": 1766,
+    "free": 52,
+    "freemium": 32
+  },
+  "skips": {
+    "retired": 17,
+    "ineligible": 1122,
+    "duplicate": 343
+  },
+  "sources": [
+    {
+      "repo": "jivoi/awesome-osint",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "repo": "cipher387/osint_stuff_tool_collection",
+      "license": "GPL-3.0"
+    },
+    {
+      "repo": "NezrKaan/osint-toolkit",
+      "license": "MIT"
+    }
+  ],
+  "limitations": "Unverified listings are NOT independently checked for uptime or pricing. Known retired and flagged-dead items are excluded, but undetected stale links may remain."
+}

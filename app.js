@@ -152,6 +152,7 @@ async function init(){
   }
   return {build,search};
 })();
+  let includeUnverified = false;
   const PAGE_SIZE = 36;
   const PICKS = new Map(Object.entries({
     "exiftool":36,"wayback machine":35,"openstreetmap":34,"sherlock":32,
@@ -206,7 +207,7 @@ async function init(){
     const article=document.createElement("article");article.className="tile";
     const top=document.createElement("div");top.className="tile-top";
     const pricing=document.createElement("span");pricing.className=`pill ${t.pricing==="freemium"?"paid":""}`;
-    pricing.textContent=t.pricing==="free"?"100% Free (listed)":"Free tier + paid";
+    pricing.textContent=t.pricing==="unknown"?"Not verified":t.pricing==="free"?"100% Free (source-listed)":"Free tier + paid (source-listed)";
     top.append(pricing);
     if (pickBonus(t)) {
       const pick=document.createElement("span");pick.className="pill editor-pick";pick.textContent="Editor's pick";
@@ -243,7 +244,7 @@ async function init(){
     const words=normalized(query).split(/\s+/).filter(Boolean);
     const scored=semanticSearch.search(query);
     const ranks=new Map(scored.map((hit,index)=>[hit.id,{index,reason:hit.reason}]));
-    currentMatches=tools.filter(t=>t.pricing===mode &&
+    currentMatches=tools.filter(t=>(t.pricing===mode || (includeUnverified && t.pricing==="unknown")) &&
       (category==="all"||t.categories.includes(category)) &&
       (!favoritesOnly||favorites.has(t.id)) &&
       (!words.length||ranks.has(t.id)));
@@ -290,11 +291,20 @@ async function init(){
       const a=document.createElement("a");a.className="actionlink";a.href=url;
       a.target="_blank";a.rel="noopener noreferrer";a.textContent=label+" ↗";links.append(a);
     }
+    if(t.sourceRepository){
+      const area=$("guideActions");
+      const p=document.createElement("p");p.className="meta";
+      p.textContent="Imported reference: "+t.sourceRepository+" (source collection: "+(t.sourceLicense||"license not recorded")+"). Provider licensing and status may differ.";
+      area.append(p);
+      const source=document.createElement("a");source.className="actionlink";
+      source.href="https://github.com/"+t.sourceRepository;source.target="_blank";source.rel="noopener noreferrer";
+      source.textContent="Source collection ↗";area.append(source);
+    }
     $("detail").showModal();
   };
   function categoryChips() {
     const counts=new Map();
-    for(const t of tools)for(const c of t.categories)counts.set(c,(counts.get(c)||0)+1);
+    for(const t of tools.filter(t=>t.pricing!=="unknown"))for(const c of t.categories)counts.set(c,(counts.get(c)||0)+1);
     const primary=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,10).map(x=>x[0]);
     const box=document.createElement("div");
     box.className="category-chips";box.setAttribute("aria-label","Quick category filters");
@@ -305,13 +315,50 @@ async function init(){
     }
     document.querySelector(".filters").after(box);
   }
+  function decorateImported(t) {
+    if(t.reviewStatus!=="needs-review")return t;
+    const label=t.sourceCategory||t.category;
+    const github=/^https:\/\/github\.com\//i.test(t.url);
+    return {...t,
+      type:github?"Public GitHub project":"Online OSINT reference",
+      description:(t.summary||"")+" This is an imported discovery listing. Check the linked official source for full capabilities and current availability.",
+      when:"Use as a starting point for authorized research related to "+label+". Independently confirm that the tool supports your intended task.",
+      where:github?"Open its GitHub page and review the setup instructions, supported systems, and maintenance status.":"Open the linked provider page in a browser; mobile support and login requirements are unknown.",
+      how:["Open the official tool link, and confirm the service or repository is still available.","Read its documentation, license, current pricing, supported inputs, and usage limits.","Start with a permitted public query or your own authorized research materials.","Review the available results without assuming they are complete or accurate.","Confirm significant findings against an independent public source, noting the date and original URL."],
+      uses:["Discover tools for public-source research in "+label+".","Compare this resource with other options in the same category.","Cross-check public observations rather than treating a single result as proof."],
+      restrictions:[t.pricing==="unknown"?"Pricing and free access are not confirmed; this entry is included only when you enable unverified candidates.":"The cost tier comes from a recent community list and is not independently confirmed.","This URL has not been live-tested; it may have changed or become unavailable.","Third-party costs, account requirements, rate limits, geographic restrictions, or API quotas may apply.","Respect privacy, consent, applicable laws, and the provider's terms. Do not access private accounts."],
+      tags:[t.sourceCategory||"",t.category||"","unverified"],
+      docs:t.url,pricingNote:t.pricing==="unknown"?"Pricing unverified. A free tier must not be assumed.":t.pricing==="free"?"A recent source directory labels this as free/open-source; check actual provider and dependency costs.":"A recent source directory labels this freemium; confirm current plan limits.",
+      statusSource:"Imported from "+(t.sourceRepository||"an external source")+". Link not independently checked.",
+      imported:t.imported||"2026-11-13"
+    };
+  }
+  function addReviewControl() {
+    const label=document.createElement("label");label.className="review-optin";
+    const check=document.createElement("input");check.type="checkbox";check.id="includeUnverified";
+    const text=document.createElement("span");text.textContent="Include unverified research listings";
+    const number=document.createElement("strong");number.id="unverifiedCount";
+    label.append(check,text,number);
+    const note=document.createElement("p");note.className="review-caption";
+    note.textContent="These extra sources may be outdated or paid. They're excluded from the free/freemium results unless you opt in.";
+    document.querySelector(".filters").after(label,note);
+    check.addEventListener("change",()=>{includeUnverified=check.checked;render();});
+    const unknown=tools.filter(t=>t.pricing==="unknown").length;
+    number.textContent="+"+unknown.toLocaleString();
+    const total=document.createElement("p");total.className="catalog-total";
+    total.textContent=tools.length.toLocaleString()+" indexed OSINT listings — "+unknown.toLocaleString()+" pricing-unverified candidates";
+    document.querySelector(".searchwrap").after(total);
+  }
   init = async function() {
     try {
-      const response=await fetch("./tools.json",{cache:"no-cache"});
-      if(!response.ok)throw Error("Catalog unavailable");
-      const data=await response.json();if(!Array.isArray(data))throw Error("Invalid data");
-      tools=data.filter(t=>t&&["free","freemium"].includes(t.pricing)&&safeURL(t.url))
-        .map(t=>({...t,
+      const catalogPaths=["./tools.json","./imports/tools-1.json","./imports/tools-2.json","./imports/tools-3.json","./imports/tools-4.json"];
+      const responses=await Promise.all(catalogPaths.map(path=>fetch(path,{cache:"no-cache"})));
+      if(responses.some(response=>!response.ok))throw Error("Catalog unavailable");
+      const groups=await Promise.all(responses.map(response=>response.json()));
+      if(groups.some(group=>!Array.isArray(group)))throw Error("Invalid catalog data");
+      const data=groups.flat();
+      tools=data.filter(t=>t&&["free","freemium","unknown"].includes(t.pricing)&&safeURL(t.url))
+        .map(t=>decorateImported(t)).map(t=>({...t,
           categories:Array.isArray(t.categories)?t.categories:[t.category],
           tags:t.tags||[],uses:t.uses||[],how:t.how||[],restrictions:t.restrictions||[],
           _search:arrays(t).join(" ").toLowerCase(),_quality:quality(t)
@@ -322,6 +369,7 @@ async function init(){
         const o=document.createElement("option");o.value=c;o.textContent=c;$("category").append(o);
       }
       categoryChips();
+      addReviewControl();
       render();
     }catch(err){
       $("count").textContent="Could not load catalog";

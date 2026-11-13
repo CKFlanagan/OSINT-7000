@@ -56,3 +56,16 @@ Search ranks by exact name match, word relevance in names/categories/tags/descri
 ## Smart search (works on phones)
 
 Search runs entirely on-device and has no AI subscription, downloadable model, or per-query service calls. It includes field-weighted word matching, rare-term weighting, related-word expansion, topic-intent boosts, typo tolerance, exact-name matching, and editor tie-breaks. For example, “old versions of websites” prioritizes Wayback Machine and “sherlok” still finds Sherlock. This is rule-based semantic matching, not a trained LLM or Google Search. It does not override pricing/category filters. To improve relatedness, update the synonym groups and intents inside `searchFactory` in `app.js`.
+
+
+## Imported research listings (13 November 2026)
+
+The site indexes **2,730 total OSINT resource listings**: 880 records from the prior user-supplied catalogue and 1,850 additional leads extracted from three maintained repositories. The new listings are stored in `imports/tools-1.json` through `imports/tools-4.json` and imported by the browser at load time. They are **not** all verified live, completely free, open-source software, or guaranteed to function. **1,766** new listings have no confirmed pricing, so the existing free/freemium switch excludes them unless the visitor deliberately enables **Include unverified research listings**. Additional 52 imported records carry a recent source's free/open-source label and 32 carry a recent source's freemium label; neither was independently re-tested for pricing. This honest status separation is essential to the project.
+
+Source catalogues (names, public links, categories only, with original tool guides written here as generic provisional guidance rather than copied source descriptions):
+
+- **jivoi/awesome-osint** — https://github.com/jivoi/awesome-osint — source curated list released under **CC BY-SA 4.0**. Provide attribution, link to that license, and respect ShareAlike obligations for any adapted source material.
+- **cipher387/osint_stuff_tool_collection** — https://github.com/cipher387/osint_stuff_tool_collection — source repository has a **GPL-3.0** license; its list expressly notes that some defunct services remain unidentified. Entries visibly marked with a gravestone were excluded.
+- **NezrKaan/osint-toolkit** — https://github.com/NezrKaan/osint-toolkit — an **MIT**-licensed directory with an October 2026 pricing and link review, useful for import prioritization. Its explicitly retired/defunct or warning-marked entries were not imported.
+
+See `imports/import-report.json` for counts and exclusions. These imports use factual tool names and destination URLs; their descriptions are new, provisional summaries. The original source lists retain their respective licenses; individual destination tools have separate licenses and usage terms. Listings were deduplicated by normalized links and names, screened for explicit defunct markers, and filtered by basic URL hygiene. **No full automatic live-link validation was performed.** Please validate a particular provider's uptime, features, and current costs before use. Do not call the total "2,730 verified tools".
