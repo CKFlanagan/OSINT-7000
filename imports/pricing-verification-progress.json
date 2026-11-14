@@ -1,0 +1,53 @@
+{
+  "originalUnverifiedTarget": 1766,
+  "lastUpdated": "2026-11-14",
+  "files": [
+    {
+      "file": "imports/tools-1.json",
+      "total": 475,
+      "unknown": 386,
+      "pricingVerified": 6
+    },
+    {
+      "file": "imports/tools-2.json",
+      "total": 475,
+      "unknown": 474,
+      "pricingVerified": 1
+    },
+    {
+      "file": "imports/tools-3.json",
+      "total": 475,
+      "unknown": 475,
+      "pricingVerified": 0
+    },
+    {
+      "file": "imports/tools-4.json",
+      "total": 425,
+      "unknown": 424,
+      "pricingVerified": 1
+    }
+  ],
+  "totals": {
+    "listings": 1850,
+    "unknown": 1759,
+    "pricingVerifiedWithEvidence": 8
+  },
+  "countingCaveat": "The current four files contain 1850 listings and 8 evidence-backed pricing-verified records. The original 1766-item cohort has not been explicitly tagged, so current pricing-verified totals must not automatically be presented as completed members of that cohort. One or more records may have been verified before the baseline. Establish original cohort IDs before announcing milestones.",
+  "notificationMilestones": [
+    500,
+    1000,
+    1500,
+    1766
+  ],
+  "notifiedMilestones": [],
+  "recentBatch": {
+    "date": "2026-11-14",
+    "verifiedIds": [
+      "source-earthenginegooglecom",
+      "source-googlecomearthversions",
+      "source-firmsmodapseosdisnasagov",
+      "source-openownershiporg"
+    ],
+    "commit": "795455fe3ec18bc86758bf43335ed688449c4d63"
+  }
+}
