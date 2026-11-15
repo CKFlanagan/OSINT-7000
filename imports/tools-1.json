@@ -274,17 +274,21 @@
     "categories": [
       "Media Verification"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "NezrKaan/osint-toolkit",
     "sourceLicense": "MIT",
     "sourceCategory": "AI-Generated and Synthetic Media Detection",
-    "reviewStatus": "needs-review",
-    "independentLinkVerified": false,
+    "reviewStatus": "pricing-verified",
+    "independentLinkVerified": true,
     "imported": "2026-11-13",
     "summary": "Research listing in AI-Generated and Synthetic Media Detection; check the provider's current features, availability, and costs.",
     "originalSources": [
       "NezrKaan/osint-toolkit"
-    ]
+    ],
+    "pricingNote": "Adobe's official Content Authenticity FAQ states the web app is currently free to use with an individual Adobe account. This classification covers the Content Credentials inspection service; it does not imply other Adobe products are free.",
+    "pricingVerificationSource": "https://contentauthenticity.adobe.com/",
+    "pricingVerifiedAt": "2026-11-15",
+    "pricingVerificationMethod": "Official Adobe product FAQ"
   },
   {
     "id": "source-earthenginegooglecom",
