@@ -1,19 +1,19 @@
 {
-  "lastUpdated": "2026-11-15",
+  "lastUpdated": "2026-11-16",
   "originalUnverifiedTarget": 1766,
   "scope": "Original unknown-pricing cohort; counts from current four import files are not proof of original-cohort membership.",
   "fileCounts": [
     {
       "file": "imports/tools-1.json",
       "total": 475,
-      "unknown": 385,
-      "verified": 7
+      "unknown": 384,
+      "verified": 8
     },
     {
       "file": "imports/tools-2.json",
       "total": 475,
-      "unknown": 474,
-      "verified": 1
+      "unknown": 473,
+      "verified": 2
     },
     {
       "file": "imports/tools-3.json",
@@ -28,20 +28,29 @@
       "verified": 1
     }
   ],
-  "currentlyUnknown": 1758,
-  "documentedPricingVerifiedInCurrentFiles": 9,
+  "currentlyUnknown": 1756,
+  "documentedPricingVerifiedInCurrentFiles": 11,
   "originalCohortResolvedCount": null,
-  "originalCohortBaselineStatus": "not yet reconstructed; do not issue milestone notifications from aggregate pricing-verified count",
+  "originalCohortBaselineStatus": "Original cohort membership not reconstructed; do not infer milestone completion from aggregate verification count.",
   "milestonesNotified": [],
   "latestBatch": [
     {
-      "id": "source-verifycontentauthenticityorg",
+      "id": "source-weverifyeuverificationplugin",
       "file": "imports/tools-1.json",
       "status": "pricing-verified",
       "pricing": "free",
-      "evidence": "https://contentauthenticity.adobe.com/",
-      "date": "2026-11-15",
-      "commit": "c3d28d2207fe6a95b0d776d24a7a526b992e2667"
+      "evidence": "https://www.invid-project.eu/tools-and-services/invid-verification-plugin/",
+      "date": "2026-11-16",
+      "commit": "45e7a16fb6f3be524d6dde697794b48c88c0bb6a"
+    },
+    {
+      "id": "source-githubcomstanfrbdcyberbro",
+      "file": "imports/tools-2.json",
+      "status": "pricing-verified",
+      "pricing": "free",
+      "evidence": "https://github.com/stanfrbd/cyberbro",
+      "date": "2026-11-16",
+      "commit": "c451a00c3e539d7e2ef26d7de40ef97304caa3b1"
     }
   ]
 }
