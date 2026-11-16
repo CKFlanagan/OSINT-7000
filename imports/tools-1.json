@@ -8,17 +8,21 @@
     "categories": [
       "Media Verification"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "NezrKaan/osint-toolkit",
     "sourceLicense": "MIT",
     "sourceCategory": "Video Analysis and Verification",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Video Analysis and Verification; check the provider's current features, availability, and costs.",
     "originalSources": [
       "NezrKaan/osint-toolkit"
-    ]
+    ],
+    "pricingNote": "The InVID project's official plugin page explicitly states 'It's free!' and identifies the toolkit's MIT-licensed source. This confirms the browser plugin's price, not the price of unrelated external services or restricted features.",
+    "pricingVerificationSource": "https://www.invid-project.eu/tools-and-services/invid-verification-plugin/",
+    "pricingVerifiedAt": "2026-11-16",
+    "pricingVerificationMethod": "Official InVID project product and licensing page"
   },
   {
     "id": "source-audacityteamorg",
