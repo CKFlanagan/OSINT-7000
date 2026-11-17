@@ -5943,17 +5943,21 @@
     "categories": [
       "Social Platforms & Profiles"
     ],
-    "pricing": "unknown",
+    "pricing": "freemium",
     "sourceRepository": "jivoi/awesome-osint",
     "sourceLicense": "CC BY-SA 4.0",
     "sourceCategory": "Instagram",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Instagram; check the provider's current features, availability, and costs.",
     "originalSources": [
       "jivoi/awesome-osint"
-    ]
+    ],
+    "pricingNote": "MIT-licensed CLI is free to install; its default HikerAPI backend uses quota/balance and may require paid API access. Optional aiograpi backend requires a logged-in account. Free software does not mean free third-party API usage.",
+    "pricingVerificationSource": "https://github.com/subzeroid/insto",
+    "pricingVerifiedAt": "2026-11-17",
+    "pricingVerificationMethod": "Maintainer README and GitHub repository MIT license"
   },
   {
     "id": "source-githubcomwhitebitedomainhunter",
@@ -6069,17 +6073,21 @@
     "categories": [
       "Media Verification"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "jivoi/awesome-osint",
     "sourceLicense": "CC BY-SA 4.0",
     "sourceCategory": "Video Search and Other Video Tools",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Video Search and Other Video Tools; check the provider's current features, availability, and costs.",
     "originalSources": [
       "jivoi/awesome-osint"
-    ]
+    ],
+    "pricingNote": "GPL-3.0-licensed Tubeup software is free to install and self-host. Requires an Internet Archive account to upload; optional VPS, bandwidth, storage, and third-party services can incur costs.",
+    "pricingVerificationSource": "https://github.com/bibanon/tubeup",
+    "pricingVerifiedAt": "2026-11-17",
+    "pricingVerificationMethod": "Maintainer README and GitHub repository GPL-3.0 license"
   },
   {
     "id": "source-usiranmonitorcom",
