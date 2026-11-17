@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-16",
+  "lastUpdated": "2026-11-17",
   "originalUnverifiedTarget": 1766,
   "scope": "Original unknown-pricing cohort; counts from current four import files are not proof of original-cohort membership.",
   "fileCounts": [
     {
       "file": "imports/tools-1.json",
       "total": 475,
-      "unknown": 384,
-      "verified": 8
+      "unknown": 382,
+      "verified": 10
     },
     {
       "file": "imports/tools-2.json",
@@ -18,18 +18,18 @@
     {
       "file": "imports/tools-3.json",
       "total": 475,
-      "unknown": 475,
-      "verified": 0
+      "unknown": 474,
+      "verified": 1
     },
     {
       "file": "imports/tools-4.json",
       "total": 425,
-      "unknown": 424,
-      "verified": 1
+      "unknown": 423,
+      "verified": 2
     }
   ],
-  "currentlyUnknown": 1756,
-  "documentedPricingVerifiedInCurrentFiles": 11,
+  "currentlyUnknown": 1752,
+  "documentedPricingVerifiedInCurrentFiles": 15,
   "originalCohortResolvedCount": null,
   "originalCohortBaselineStatus": "Original cohort membership not reconstructed; do not infer milestone completion from aggregate verification count.",
   "milestonesNotified": [],
@@ -51,6 +51,42 @@
       "evidence": "https://github.com/stanfrbd/cyberbro",
       "date": "2026-11-16",
       "commit": "c451a00c3e539d7e2ef26d7de40ef97304caa3b1"
+    },
+    {
+      "id": "source-githubcomsubzeroidinsto",
+      "file": "imports/tools-1.json",
+      "pricing": "freemium",
+      "evidence": "https://github.com/subzeroid/insto",
+      "commit": "253b84fed19256c189dd762a0d88d392407e15e8",
+      "status": "pricing-verified",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "source-githubcombibanontubeup",
+      "file": "imports/tools-1.json",
+      "pricing": "free",
+      "evidence": "https://github.com/bibanon/tubeup",
+      "commit": "253b84fed19256c189dd762a0d88d392407e15e8",
+      "status": "pricing-verified",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "source-githubcomwkentarogdown",
+      "file": "imports/tools-3.json",
+      "pricing": "free",
+      "evidence": "https://github.com/wkentaro/gdown",
+      "commit": "7cda22b6ea9642de4a3300d5becb54793107adae",
+      "status": "pricing-verified",
+      "date": "2026-11-17"
+    },
+    {
+      "id": "source-githubcomdineshkarthiktelegrammediadownloader",
+      "file": "imports/tools-4.json",
+      "pricing": "free",
+      "evidence": "https://github.com/Dineshkarthik/telegram_media_downloader",
+      "commit": "d9bafc324b012b1751237f8ef839b0297e1d7f41",
+      "status": "pricing-verified",
+      "date": "2026-11-17"
     }
   ]
 }
