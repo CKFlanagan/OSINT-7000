@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-17",
+  "lastUpdated": "2026-11-18",
   "originalUnverifiedTarget": 1766,
   "scope": "Original unknown-pricing cohort; counts from current four import files are not proof of original-cohort membership.",
   "fileCounts": [
     {
       "file": "imports/tools-1.json",
       "total": 475,
-      "unknown": 382,
-      "verified": 10
+      "unknown": 381,
+      "verified": 11
     },
     {
       "file": "imports/tools-2.json",
@@ -18,8 +18,8 @@
     {
       "file": "imports/tools-3.json",
       "total": 475,
-      "unknown": 474,
-      "verified": 1
+      "unknown": 473,
+      "verified": 2
     },
     {
       "file": "imports/tools-4.json",
@@ -28,8 +28,8 @@
       "verified": 2
     }
   ],
-  "currentlyUnknown": 1752,
-  "documentedPricingVerifiedInCurrentFiles": 15,
+  "currentlyUnknown": 1750,
+  "documentedPricingVerifiedInCurrentFiles": 17,
   "originalCohortResolvedCount": null,
   "originalCohortBaselineStatus": "Original cohort membership not reconstructed; do not infer milestone completion from aggregate verification count.",
   "milestonesNotified": [],
@@ -87,6 +87,24 @@
       "commit": "d9bafc324b012b1751237f8ef839b0297e1d7f41",
       "status": "pricing-verified",
       "date": "2026-11-17"
+    },
+    {
+      "id": "source-freesoundorg",
+      "file": "imports/tools-1.json",
+      "status": "pricing-verified",
+      "pricing": "free",
+      "evidence": "https://freesound.org/help/faq/",
+      "date": "2026-11-18",
+      "commit": "04a06e532b74a531daafea523bc9de26cd1e1d08"
+    },
+    {
+      "id": "source-githubcomhueristiqxurlfind3r",
+      "file": "imports/tools-3.json",
+      "status": "pricing-verified",
+      "pricing": "free",
+      "evidence": "https://github.com/hueristiq/xurlfind3r",
+      "date": "2026-11-18",
+      "commit": "b95da7a4b090c6c17ac69065fab6028741db6be5c"
     }
   ]
 }
