@@ -391,17 +391,21 @@
     "categories": [
       "Geospatial & Mapping"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "NezrKaan/osint-toolkit",
     "sourceLicense": "MIT",
     "sourceCategory": "Environmental and Bioacoustic Sound Identification",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Environmental and Bioacoustic Sound Identification; check the provider's current features, availability, and costs.",
     "originalSources": [
       "NezrKaan/osint-toolkit"
-    ]
+    ],
+    "pricingNote": "Official Freesound FAQ explicitly states the sound library is free subject to each recording's Creative Commons license; attribution and noncommercial restrictions may apply. Donations are optional.",
+    "pricingVerificationSource": "https://freesound.org/help/faq/",
+    "pricingVerifiedAt": "2026-11-18",
+    "pricingVerificationMethod": "Official provider FAQ and sound licensing guidance"
   },
   {
     "id": "source-opentendereu",
