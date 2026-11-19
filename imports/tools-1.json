@@ -844,17 +844,21 @@
     "categories": [
       "Research Utilities & Analysis"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "NezrKaan/osint-toolkit",
     "sourceLicense": "MIT",
     "sourceCategory": "Procurement and Public Spending",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Procurement and Public Spending; check the provider's current features, availability, and costs.",
     "originalSources": [
       "NezrKaan/osint-toolkit"
-    ]
+    ],
+    "pricingNote": "EU Publications Office explicitly states TED provides free access to public procurement notices and opportunities; registration adds personalization features.",
+    "pricingVerificationSource": "https://ted.europa.eu/en/about-ted",
+    "pricingVerifiedAt": "2026-11-19",
+    "pricingVerificationMethod": "Official provider documentation"
   },
   {
     "id": "source-vimicrosoftcom",
@@ -1117,17 +1121,21 @@
     "categories": [
       "Websites & Infrastructure"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "NezrKaan/osint-toolkit",
     "sourceLicense": "MIT",
     "sourceCategory": "Company Registers and Ownership",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Company Registers and Ownership; check the provider's current features, availability, and costs.",
     "originalSources": [
       "NezrKaan/osint-toolkit"
-    ]
+    ],
+    "pricingNote": "GLEIF explicitly states its Global LEI Index can be searched free of charge; this does not imply LEI issuance or renewal is free.",
+    "pricingVerificationSource": "https://www.gleif.org/en/about/open-data",
+    "pricingVerifiedAt": "2026-11-19",
+    "pricingVerificationMethod": "Official provider documentation"
   },
   {
     "id": "source-githubcomninosekimitaka",
@@ -1180,17 +1188,21 @@
     "categories": [
       "Research Utilities & Analysis"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "NezrKaan/osint-toolkit",
     "sourceLicense": "MIT",
     "sourceCategory": "Notes and Case Management",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Notes and Case Management; check the provider's current features, availability, and costs.",
     "originalSources": [
       "NezrKaan/osint-toolkit"
-    ]
+    ],
+    "pricingNote": "Official pricing page: core desktop/mobile application is free for personal and commercial use; optional paid Sync, Publish and support licenses are separate.",
+    "pricingVerificationSource": "https://obsidian.md/pricing",
+    "pricingVerifiedAt": "2026-11-19",
+    "pricingVerificationMethod": "Official provider documentation"
   },
   {
     "id": "source-overpassultraus",
