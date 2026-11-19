@@ -1,110 +1,29 @@
 {
-  "lastUpdated": "2026-11-18",
+  "updatedAt": "2026-11-19",
   "originalUnverifiedTarget": 1766,
-  "scope": "Original unknown-pricing cohort; counts from current four import files are not proof of original-cohort membership.",
-  "fileCounts": [
-    {
-      "file": "imports/tools-1.json",
-      "total": 475,
-      "unknown": 381,
-      "verified": 11
-    },
-    {
-      "file": "imports/tools-2.json",
-      "total": 475,
-      "unknown": 473,
-      "verified": 2
-    },
-    {
-      "file": "imports/tools-3.json",
-      "total": 475,
-      "unknown": 473,
-      "verified": 2
-    },
-    {
-      "file": "imports/tools-4.json",
-      "total": 425,
-      "unknown": 423,
-      "verified": 2
-    }
-  ],
-  "currentlyUnknown": 1750,
-  "documentedPricingVerifiedInCurrentFiles": 17,
+  "scope": "imports/tools-1.json through imports/tools-4.json",
+  "currentInventoryCount": 1850,
+  "currentUnknownPricingCount": 1747,
+  "documentedPricingVerifiedCount": 20,
+  "documentedUnconfirmableOrUnavailableCount": 0,
   "originalCohortResolvedCount": null,
-  "originalCohortBaselineStatus": "Original cohort membership not reconstructed; do not infer milestone completion from aggregate verification count.",
-  "milestonesNotified": [],
-  "latestBatch": [
-    {
-      "id": "source-weverifyeuverificationplugin",
-      "file": "imports/tools-1.json",
-      "status": "pricing-verified",
-      "pricing": "free",
-      "evidence": "https://www.invid-project.eu/tools-and-services/invid-verification-plugin/",
-      "date": "2026-11-16",
-      "commit": "45e7a16fb6f3be524d6dde697794b48c88c0bb6a"
-    },
-    {
-      "id": "source-githubcomstanfrbdcyberbro",
-      "file": "imports/tools-2.json",
-      "status": "pricing-verified",
-      "pricing": "free",
-      "evidence": "https://github.com/stanfrbd/cyberbro",
-      "date": "2026-11-16",
-      "commit": "c451a00c3e539d7e2ef26d7de40ef97304caa3b1"
-    },
-    {
-      "id": "source-githubcomsubzeroidinsto",
-      "file": "imports/tools-1.json",
-      "pricing": "freemium",
-      "evidence": "https://github.com/subzeroid/insto",
-      "commit": "253b84fed19256c189dd762a0d88d392407e15e8",
-      "status": "pricing-verified",
-      "date": "2026-11-17"
-    },
-    {
-      "id": "source-githubcombibanontubeup",
-      "file": "imports/tools-1.json",
-      "pricing": "free",
-      "evidence": "https://github.com/bibanon/tubeup",
-      "commit": "253b84fed19256c189dd762a0d88d392407e15e8",
-      "status": "pricing-verified",
-      "date": "2026-11-17"
-    },
-    {
-      "id": "source-githubcomwkentarogdown",
-      "file": "imports/tools-3.json",
-      "pricing": "free",
-      "evidence": "https://github.com/wkentaro/gdown",
-      "commit": "7cda22b6ea9642de4a3300d5becb54793107adae",
-      "status": "pricing-verified",
-      "date": "2026-11-17"
-    },
-    {
-      "id": "source-githubcomdineshkarthiktelegrammediadownloader",
-      "file": "imports/tools-4.json",
-      "pricing": "free",
-      "evidence": "https://github.com/Dineshkarthik/telegram_media_downloader",
-      "commit": "d9bafc324b012b1751237f8ef839b0297e1d7f41",
-      "status": "pricing-verified",
-      "date": "2026-11-17"
-    },
-    {
-      "id": "source-freesoundorg",
-      "file": "imports/tools-1.json",
-      "status": "pricing-verified",
-      "pricing": "free",
-      "evidence": "https://freesound.org/help/faq/",
-      "date": "2026-11-18",
-      "commit": "04a06e532b74a531daafea523bc9de26cd1e1d08"
-    },
-    {
-      "id": "source-githubcomhueristiqxurlfind3r",
-      "file": "imports/tools-3.json",
-      "status": "pricing-verified",
-      "pricing": "free",
-      "evidence": "https://github.com/hueristiq/xurlfind3r",
-      "date": "2026-11-18",
-      "commit": "b95da7a4b090c6c17ac69065fab6028741db6be5c"
-    }
-  ]
+  "originalCohortNote": "Original 1,766-item cohort identifiers have not yet been independently reconstructed. The 20 documented verified entries in current files cannot all be proven to belong to that original cohort; do not issue milestone notifications from this provisional inventory count.",
+  "milestones": [
+    500,
+    1000,
+    1500,
+    1766
+  ],
+  "notifiedMilestones": [],
+  "lastBatch": {
+    "date": "2026-11-19",
+    "entries": [
+      "Obsidian",
+      "TED – Tenders Electronic Daily",
+      "GLEIF LEI Search"
+    ],
+    "count": 3,
+    "commit": "05fcc1914df5c9df2d7bb4a0762e9907dfae850a"
+  },
+  "classificationRule": "Count only individually checked entries with documented evidence and date, or explicitly documented unavailable/unconfirmable status. Never infer free pricing from a working URL or GitHub hosting."
 }
