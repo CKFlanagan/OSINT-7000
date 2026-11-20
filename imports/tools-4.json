@@ -59,17 +59,21 @@
     "categories": [
       "Websites & Infrastructure"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "cipher387/osint_stuff_tool_collection",
     "sourceLicense": "GPL-3.0",
     "sourceCategory": "Subdomains scan/brute",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Subdomains scan/brute; check the provider's current features, availability, and costs.",
     "originalSources": [
       "cipher387/osint_stuff_tool_collection"
-    ]
+    ],
+    "pricingNote": "Maintainer's MIT license permits free use and redistribution of the locally installed tool. Optional external IPINFO API, proxies, and cloud services may have separate costs.",
+    "pricingVerificationSource": "https://github.com/0xsha/CloudBrute/blob/master/LICENSE",
+    "pricingVerifiedAt": "2026-11-20",
+    "pricingVerificationMethod": "Maintainer repository LICENSE and README"
   },
   {
     "id": "source-tibeuensearchdiscover",
@@ -185,17 +189,21 @@
     "categories": [
       "Websites & Infrastructure"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "cipher387/osint_stuff_tool_collection",
     "sourceLicense": "GPL-3.0",
     "sourceCategory": "Website analyze",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Website analyze; check the provider's current features, availability, and costs.",
     "originalSources": [
       "cipher387/osint_stuff_tool_collection"
-    ]
+    ],
+    "pricingNote": "Maintainer publishes the locally runnable Python/Go utility under GPL-3.0; no software purchase is required. Third-party BuiltWith or HackerTarget services queried by the utility may have independent usage limits or costs.",
+    "pricingVerificationSource": "https://github.com/Josue87/AnalyticsRelationships/blob/master/LICENSE",
+    "pricingVerifiedAt": "2026-11-20",
+    "pricingVerificationMethod": "Maintainer repository LICENSE and README"
   },
   {
     "id": "source-githubcommathis2001cert4recon",
