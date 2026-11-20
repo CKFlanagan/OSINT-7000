@@ -1,29 +1,12 @@
 {
-  "updatedAt": "2026-11-19",
-  "originalUnverifiedTarget": 1766,
-  "scope": "imports/tools-1.json through imports/tools-4.json",
-  "currentInventoryCount": 1850,
-  "currentUnknownPricingCount": 1747,
-  "documentedPricingVerifiedCount": 20,
-  "documentedUnconfirmableOrUnavailableCount": 0,
-  "originalCohortResolvedCount": null,
-  "originalCohortNote": "Original 1,766-item cohort identifiers have not yet been independently reconstructed. The 20 documented verified entries in current files cannot all be proven to belong to that original cohort; do not issue milestone notifications from this provisional inventory count.",
-  "milestones": [
-    500,
-    1000,
-    1500,
-    1766
-  ],
+  "baselineOriginalUnverified": 1766,
+  "asOf": "2026-11-20",
+  "totalListings": 1850,
+  "unknownPricing": 1745,
+  "pricingVerifiedWithEvidence": 22,
+  "documentedOtherOutcomes": 0,
+  "completedDocumented": 22,
   "notifiedMilestones": [],
-  "lastBatch": {
-    "date": "2026-11-19",
-    "entries": [
-      "Obsidian",
-      "TED – Tenders Electronic Daily",
-      "GLEIF LEI Search"
-    ],
-    "count": 3,
-    "commit": "05fcc1914df5c9df2d7bb4a0762e9907dfae850a"
-  },
-  "classificationRule": "Count only individually checked entries with documented evidence and date, or explicitly documented unavailable/unconfirmable status. Never infer free pricing from a working URL or GitHub hosting."
+  "nextMilestone": 500,
+  "methodology": "Only individual records with evidence source and verification date and a resolved status count. Original baseline membership should be tracked explicitly if the initial snapshot becomes available; current count is conservative and may include pre-baseline records."
 }
