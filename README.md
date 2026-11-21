@@ -6,7 +6,8 @@ Responsive, free static OSINT directory with a large slider pricing switch, inst
 
 ```bash
 sudo dnf install python3 git
-cd osint-7000
+git clone https://github.com/CKFlanagan/OSINT-7000
+cd OSINT-7000
 python3 -m http.server 8000
 ```
 
