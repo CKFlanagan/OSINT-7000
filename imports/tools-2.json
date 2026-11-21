@@ -416,17 +416,21 @@
     "categories": [
       "Search & Discovery"
     ],
-    "pricing": "unknown",
+    "pricing": "freemium",
     "sourceRepository": "jivoi/awesome-osint",
     "sourceLicense": "CC BY-SA 4.0",
     "sourceCategory": "Phone Number Research",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Phone Number Research; check the provider's current features, availability, and costs.",
     "originalSources": [
       "jivoi/awesome-osint"
-    ]
+    ],
+    "pricingNote": "Twilio Lookup v2 basic formatting and validation is free; optional data packages are charged per request (e.g., line type intelligence $0.008/request). Pricing page states rates current as of August 2026.",
+    "pricingVerificationSource": "https://www.twilio.com/en-us/user-authentication-identity/pricing/lookup",
+    "pricingVerifiedAt": "2026-11-21",
+    "pricingVerificationMethod": "Official Twilio Lookup API documentation and provider pricing"
   },
   {
     "id": "source-amazoncomweddingsearch",
@@ -647,17 +651,21 @@
     "categories": [
       "Research Utilities & Analysis"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "jivoi/awesome-osint",
     "sourceLicense": "CC BY-SA 4.0",
     "sourceCategory": "Offline Browsing",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Offline Browsing; check the provider's current features, availability, and costs.",
     "originalSources": [
       "jivoi/awesome-osint"
-    ]
+    ],
+    "pricingNote": "HTTrack's official site explicitly identifies the website copier as free GPL software; this refers to the HTTrack utility, not third-party sites or hosting.",
+    "pricingVerificationSource": "https://www.httrack.com/",
+    "pricingVerifiedAt": "2026-11-21",
+    "pricingVerificationMethod": "Official HTTrack product site and GPL statement"
   },
   {
     "id": "source-huggingfacecospacesaidcaiovis16gemma29b",
