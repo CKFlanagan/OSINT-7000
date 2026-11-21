@@ -424,17 +424,21 @@
     "categories": [
       "Social Platforms & Profiles"
     ],
-    "pricing": "unknown",
+    "pricing": "freemium",
     "sourceRepository": "jivoi/awesome-osint",
     "sourceLicense": "CC BY-SA 4.0",
     "sourceCategory": "People Investigations",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in People Investigations; check the provider's current features, availability, and costs.",
     "originalSources": [
       "jivoi/awesome-osint"
-    ]
+    ],
+    "pricingNote": "Official pricing offers a $0 Free tier with 900 credits per seat per year and paid Basic, Professional, and Organization tiers. Paid plans and credit limits apply.",
+    "pricingVerificationSource": "https://www.apollo.io/pricing",
+    "pricingVerifiedAt": "2026-11-21",
+    "pricingVerificationMethod": "Official Apollo pricing comparison"
   },
   {
     "id": "source-wtoolskitcomendnslookup",
