@@ -831,17 +831,21 @@
     "categories": [
       "Research Utilities & Analysis"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "cipher387/osint_stuff_tool_collection",
     "sourceLicense": "GPL-3.0",
     "sourceCategory": "Universal",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Universal; check the provider's current features, availability, and costs.",
     "originalSources": [
       "cipher387/osint_stuff_tool_collection"
-    ]
+    ],
+    "pricingNote": "Official upstream Python package metadata explicitly declares the OSI-approved MIT license, confirming the freely licensed downloadable software; third-party platform access and hosting are not included.",
+    "pricingVerificationSource": "https://github.com/xenova/chat-downloader/blob/master/setup.py",
+    "pricingVerifiedAt": "2026-11-22",
+    "pricingVerificationMethod": "Official maintainer setup.py MIT license declaration"
   },
   {
     "id": "source-finalnotespageobituaryresearchguide",
@@ -940,17 +944,21 @@
     "categories": [
       "Search & Discovery"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "cipher387/osint_stuff_tool_collection",
     "sourceLicense": "GPL-3.0",
     "sourceCategory": "Search engines",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Search engines; check the provider's current features, availability, and costs.",
     "originalSources": [
       "cipher387/osint_stuff_tool_collection"
-    ]
+    ],
+    "pricingNote": "Official maintainer repository explicitly describes SearXNG as a free metasearch engine and publishes the source under AGPL-3.0. This classifies the self-hosted software, not optional hosting or third-party services.",
+    "pricingVerificationSource": "https://github.com/searxng/searxng",
+    "pricingVerifiedAt": "2026-11-22",
+    "pricingVerificationMethod": "Official upstream README and AGPL-3.0 license"
   },
   {
     "id": "source-githubcomsnoopprshotstars",
