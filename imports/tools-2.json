@@ -238,10 +238,10 @@
     "originalSources": [
       "jivoi/awesome-osint"
     ],
-    "pricingEvidenceUrl": "https://github.com/misiektoja/steam_monitor/blob/main/LICENSE",
     "pricingVerifiedAt": "2026-11-23",
     "pricingVerificationMethod": "Official upstream GPL-3.0 license and upstream README installation documentation",
-    "pricingNotes": "Upstream project is distributed under GPL-3.0 and documents pip installation; no software license fee is required. Use requires a Steam Web API key; optional external notification services may have separate costs. This does not establish pricing of external services."
+    "pricingVerificationSource": "https://github.com/misiektoja/steam_monitor/blob/main/LICENSE",
+    "pricingNote": "Upstream project is distributed under GPL-3.0 and documents pip installation; no software license fee is required. Use requires a Steam Web API key; optional external notification services may have separate costs. This does not establish pricing of external services."
   },
   {
     "id": "source-enwhotwicom",
