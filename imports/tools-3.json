@@ -50,17 +50,21 @@
     "categories": [
       "Research Utilities & Analysis"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "jivoi/awesome-osint",
     "sourceLicense": "CC BY-SA 4.0",
     "sourceCategory": "Pastebins",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Pastebins; check the provider's current features, availability, and costs.",
     "originalSources": [
       "jivoi/awesome-osint"
-    ]
+    ],
+    "pricingVerificationSource": "https://github.com/bokub/nopaste",
+    "pricingVerifiedAt": "2026-11-24",
+    "pricingVerificationMethod": "Official upstream deployment documentation",
+    "pricingNote": "Upstream describes a static open-source application and explicitly documents free self-hosting via GitHub Pages. Classification applies to the software, not any optional third-party hosting charges."
   },
   {
     "id": "source-chromegooglecomwebstoredetailopenlinkstructur",
@@ -180,17 +184,21 @@
     "categories": [
       "Media Verification"
     ],
-    "pricing": "unknown",
+    "pricing": "paid",
     "sourceRepository": "jivoi/awesome-osint",
     "sourceLicense": "CC BY-SA 4.0",
     "sourceCategory": "Real-Time Search, Social Media Search, and General Social Media Tools",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Real-Time Search, Social Media Search, and General Social Media Tools; check the provider's current features, availability, and costs.",
     "originalSources": [
       "jivoi/awesome-osint"
-    ]
+    ],
+    "pricingVerificationSource": "https://help.buzzsumo.com/en/articles/1964650-do-you-offer-a-free-version-of-buzzsumo",
+    "pricingVerifiedAt": "2026-11-24",
+    "pricingVerificationMethod": "Official provider help center and pricing page",
+    "pricingNote": "Provider explicitly states there is no ongoing free plan; new users may access a limited free trial (50 searches). Paid subscriptions are listed at https://buzzsumo.com/pricing/."
   },
   {
     "id": "source-cellmappernetmap",
