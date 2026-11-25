@@ -230,17 +230,21 @@
     "categories": [
       "Websites & Infrastructure"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "cipher387/osint_stuff_tool_collection",
     "sourceLicense": "GPL-3.0",
     "sourceCategory": "Website analyze",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Website analyze; check the provider's current features, availability, and costs.",
     "originalSources": [
       "cipher387/osint_stuff_tool_collection"
-    ]
+    ],
+    "pricingNote": "Upstream README identifies the deployed evaluator and documents the downloadable core library; Apache-2.0 license permits royalty-free use of the software. Separate hosting costs are not covered.",
+    "pricingVerificationSource": "https://github.com/google/csp-evaluator",
+    "pricingVerifiedAt": "2026-11-25",
+    "pricingVerificationMethod": "Upstream README and Apache-2.0 license"
   },
   {
     "id": "source-gibirucom",
