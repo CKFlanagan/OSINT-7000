@@ -318,17 +318,21 @@
     "categories": [
       "Websites & Infrastructure"
     ],
-    "pricing": "unknown",
+    "pricing": "free",
     "sourceRepository": "cipher387/osint_stuff_tool_collection",
     "sourceLicense": "GPL-3.0",
     "sourceCategory": "Communications, Internet, Technologies",
-    "reviewStatus": "needs-review",
+    "reviewStatus": "pricing-verified",
     "independentLinkVerified": false,
     "imported": "2026-11-13",
     "summary": "Research listing in Communications, Internet, Technologies; check the provider's current features, availability, and costs.",
     "originalSources": [
       "cipher387/osint_stuff_tool_collection"
-    ]
+    ],
+    "pricingVerificationSource": "https://docs.ooni.org/data",
+    "pricingVerifiedAt": "2026-11-26",
+    "pricingVerificationMethod": "Official open-data documentation and Explorer user guide",
+    "pricingNote": "Provider documents open access to its measurement dataset, explicitly without access charges for the public dataset, and describes Explorer as the public search interface at https://ooni.org/support/ooni-explorer/. Regional access restrictions may apply."
   },
   {
     "id": "source-sherlockeyeio",
